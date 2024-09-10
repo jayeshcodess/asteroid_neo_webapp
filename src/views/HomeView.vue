@@ -3,6 +3,7 @@ import moment from 'moment'
 import { useAsteroidStore } from '@/stores/asteroid'
 import Date from '../components/DateComp.vue'
 import { watch } from 'vue'
+import BarChart from '@/components/BarChart.vue';
 // import
 
 const currentDate = moment()
@@ -39,6 +40,13 @@ watch(
       :max-date="formattedDate"
       min-date=""
     ></Date>
+
+
+    <div class="p-3">
+      <div class="w-[30%]">
+        <BarChart></BarChart>
+      </div>
+    </div>
 
     <div class="p-2">
       <button class="rounded-md bg-green-400 p-2" @click="asteroidStore.getAsteroidFeed()">
