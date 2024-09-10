@@ -14,8 +14,8 @@ export const useAsteroidStore = defineStore('asteroid', () => {
    
     const res = await getNeoFeed(startDate.value, endDate.value);
     console.log(res);
-    feeds.value = res;
+    // feeds.value = res;
   }
 
-  return { startDate, endDate, dateRange, getAsteroidFeed }
+  return { startDate, endDate, dateRange, getAsteroidFeed,feeds }
 })
