@@ -15,14 +15,19 @@ ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 import { ref } from 'vue'
 
+const props = defineProps<{
+  dates: string[],
+  count: number[]
+}>()
+
 const chartData = ref({
-  labels: ['January', 'February', 'March'],
+  labels: props.dates,
   datasets: [
     {
-      label: 'My First Dataset',
-      backgroundColor: 'rgb(255, 99, 132)',
-      borderColor: 'rgb(255, 99, 132)',
-      data: [0, 10, 5]
+      label: 'Number of Asteroids',
+      backgroundColor: 'rgb(83, 151, 214)',
+      borderColor: 'rgb(0,0,0)',
+      data: props.count
     }
   ]
 })
@@ -34,7 +39,7 @@ const chartOptions = ref({
 </script>
 
 <template>
-  <div>
+  <div class="h-[300px] w-[600px] text-white">
     <Bar :data="chartData" :options="chartOptions" />
   </div>
 </template>

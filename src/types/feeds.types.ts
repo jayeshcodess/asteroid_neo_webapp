@@ -11,17 +11,10 @@ export interface Feeds {
   }
   
   export interface NearEarthObjects {
-    "2024-09-10": N20240910[]
-    "2024-09-11": N20240911[]
-    "2024-09-16": N20240916[]
-    "2024-09-17": N20240917[]
-    "2024-09-12": N20240912[]
-    "2024-09-13": N20240913[]
-    "2024-09-14": N20240914[]
-    "2024-09-15": N20240915[]
+    [key:string] : NearEarthObject[]
   }
   
-  export interface N20240910 {
+  export interface NearEarthObject {
     links: Links2
     id: string
     neo_reference_id: string
