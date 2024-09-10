@@ -75,7 +75,7 @@ watch(
           <div class="flex flex-col">
             <span> Asteroid Id : {{ asteroidStore.fastestAsteroidId }} </span>
             <span>
-              Speed - {{ asteroidStore.highestSpeed }}
+              Speed : {{ asteroidStore.highestSpeed }}
               <span class="text-green-400"> km/h</span></span
             >
           </div>
@@ -88,7 +88,7 @@ watch(
           <div class="flex flex-col">
             <span> Asteroid Id : {{ asteroidStore.closestAsteroidId }} </span>
             <span>
-              Speed - {{ asteroidStore.shortestDistance }}
+              Distance : {{ asteroidStore.shortestDistance }}
               <span class="text-green-400"> km(s)</span>
             </span>
           </div>
@@ -100,7 +100,7 @@ watch(
 
           <div class="flex flex-col">
             <span>
-              Size - {{ asteroidStore.averageSize }}
+              Size  : {{ asteroidStore.averageSize }}
               <span class="text-green-400"> km(s)</span></span
             >
           </div>
