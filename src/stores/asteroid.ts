@@ -19,7 +19,7 @@ export const useAsteroidStore = defineStore('asteroid', () => {
 
   const totalDiameter = ref(0)
   const asteroidCount = ref(0)
-
+  const averageDiameter = ref(0)
   const averageSize = ref(0)
   const feeds = ref<Feeds | null>(null)
 
@@ -29,9 +29,9 @@ export const useAsteroidStore = defineStore('asteroid', () => {
   const getAsteroidFeed = async () => {
     // setting loader to true
     isLoading.value = true
-    
+
     const data = await getNeoFeed(startDate.value, endDate.value)
-    
+
     if (data?.response?.data?.code) {
       const error = data.response.data
       errorMessage.value = error.error_message
@@ -63,9 +63,8 @@ export const useAsteroidStore = defineStore('asteroid', () => {
 
         const minDiameter = obj.estimated_diameter.kilometers.estimated_diameter_min
         const maxDiameter = obj.estimated_diameter.kilometers.estimated_diameter_max
-        const averageDiameter = (minDiameter + maxDiameter) / 2
-        totalDiameter.value = 0
-        totalDiameter.value += averageDiameter
+        averageDiameter.value = (minDiameter + maxDiameter) / 2
+        totalDiameter.value += averageDiameter.value
 
         asteroidCount.value++
       })
@@ -92,11 +91,18 @@ export const useAsteroidStore = defineStore('asteroid', () => {
   const reset = () => {
     feeds.value = null
     dates.value = []
-    startDate.value = ""
-    endDate.value = ""
+    numberOfAsteroidsInEachKeys.value = []
+    startDate.value = ''
+    endDate.value = ''
     numberOfAsteroids.value = []
     totalDiameter.value = 0
-    averageSize.value = 0;
+    averageSize.value = 0
+    shortestDistance.value = Infinity
+    fastestAsteroidId.value = ""
+    closestAsteroidId.value = ""
+    highestSpeed.value = 0
+    averageDiameter.value = 0
+    asteroidCount.value = 0
   }
 
   return {
