@@ -45,16 +45,16 @@ export const useAsteroidStore = defineStore('asteroid', () => {
     for (const [key, objects] of Object.entries(near_earth_objects)) {
       numberOfAsteroids.value.push({ date: key, count: objects.length })
       objects.forEach((obj) => {
-        obj.close_approach_data.forEach((approach) => {
+        obj.close_approach_data.forEach((data) => {
           //for highest spped of asteroid
-          const speed = parseFloat(approach.relative_velocity.kilometers_per_hour)
+          const speed = parseFloat(data.relative_velocity.kilometers_per_hour)
           if (speed > highestSpeed.value) {
             highestSpeed.value = speed
             fastestAsteroidId.value = obj.id
           }
 
           //for closest distance spped of asteroid
-          const distance = parseFloat(approach.miss_distance.kilometers)
+          const distance = parseFloat(data.miss_distance.kilometers)
           if (distance < shortestDistance.value) {
             shortestDistance.value = distance
             closestAsteroidId.value = obj.id
@@ -85,7 +85,6 @@ export const useAsteroidStore = defineStore('asteroid', () => {
       numberOfAsteroidsInEachKeys.value.push(numberOfAsteroids.value[ast].count)
     }
 
-    averageSize.value = 0
     averageSize.value = totalDiameter.value / asteroidCount.value
     isLoading.value = false
   }
@@ -96,6 +95,8 @@ export const useAsteroidStore = defineStore('asteroid', () => {
     startDate.value = ""
     endDate.value = ""
     numberOfAsteroids.value = []
+    totalDiameter.value = 0
+    averageSize.value = 0;
   }
 
   return {
